@@ -13,7 +13,7 @@ typedef pair<int, string> psi;
 int main(){
 	Fast
     int t; cin>>t;
-    map<number, string> hashVector(1e5);
+    map<int, string> hashVector;
     test:while (t--){
         string action;cin>>action;
         int number;cin>>number;
@@ -25,26 +25,14 @@ int main(){
         }
         if(action=="find"){
             bool flag = true;
-            
-            for (size_t i = 0; i < hashVector.size(); i++){
-                if(hashVector[i]==number){
-                    cout<<hashVector[i].second<<endl;
-                    flag = false;
-                    break;
-                }
-            }
-            if(flag){
+            if(hashVector.count(number)){
+                cout<<hashVector.find(number)->second<<endl;
+            }else{
                 cout<<"not found"<<endl;
-                continue;
             }
         }
         if(action=="del"){
-            for (size_t i = 0; i < hashVector.size(); i++){
-                if(hashVector[i].first==number){
-                    hashVector.erase(hashVector.begin()+i);
-                    break;
-                }
-            }
+            hashVector.erase(number);
         }
     }
     
